@@ -1,0 +1,42 @@
+infiniScroll -- infinite scrolling for ALL!
+
+but first... DEMO time!
+
+Go here:  http://markholton.com
+
+Notice the posts with titles within the 'viewport' of your screen.  
+Now scroll down to the bottom
+Whoa!  Look at that!  A "Loading" spinner + 5 new posts!
+now scroll to [what you think is the new bottom]
+Whoa! 5 more new posts just loaded!
+Did you reach the end?  Okay good.
+
+"infiniScroll" was written as a jQuery plugin.  It works for blog posts... but will work for anything where you scroll to get more data.  Just like Twitter.com, Facebook status messages, etc.  Instead of paginating items, why not just keep scrolling?  We like to scroll more than we like to go to a new page in some cases.  It's easier to get to items, and you already paid the prices of loading, so why load again!  Posts and tweets are one thing, but will also work same for leaderboards, portfolio items, anything where you want to load subsequent elements. 
+
+MOTIVATION
+As a front end engineer, you want initial page loads fast with minimal elements if possible (this makes users happy), as they can intuitively scroll they get more (like a rat hitting the lever for another pellet).  
+
+COMPATIBILITY
+I have the code written so that it will work with jQuery 1.4, but there's nothing specific about jQuery 1.4 in here, it likely works with many versions prior.  In the process of abstracting it so that it will work with *any* back end (demonstrating here it works with Rails, but will work just as well with Python/Django, PHP, ColdFusion, etc).  Will open source the code soon, with descriptions on my blog, but if you view source (here) can see what i have.  Should work in IE6+, FF2+, Safari, Chrome.
+
+USAGE
+Basically, anyone that wants the same functionality for infinite scrolling ... can include the infiniScroll jQuery plugin "infiniScroll.js":
+1. set up a div with an ID to call out (E.g. 'posts'), 
+2. set up a backend page to respond with N rows when a URL is requested... 
+3. then make one call in the bottom of their page:
+
+Who wants to keep writing the same code?  Nobody.  Well certainly not most people.  So wanted to abstract this so it can be re-used it in a lot of places.  Now instead of re-writing 104 lines of code, you can write 1 line:  
+$('#posts').infiniScroll('pollScroll');
+
+It has default settings, but those can be overridden as such (it will override what is set, and keep defaults for the rest):
+
+$('#posts').infiniScroll({ // calls the init method
+  'interval' : 200
+  ,'root_url' : '/my_posts'
+  ,'loading_elem': 'loading'
+  ,'data_elem': 'leaderboard'
+  ,'num' : 12
+});
+
+More details later, hope you like infiniScroll!
+Mark
