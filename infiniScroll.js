@@ -5,7 +5,7 @@
 // version 0.1
 // requires jQuery (I wrote it with 1.4, but it likely works with earlier versions, 
 // will check into that later)
-// if you re-use, keep this in the header
+// if you re-use, ask that you keep this in the header
 // http://markholton.com
 
 // USAGE: 

@@ -1,3 +1,13 @@
+// code written by Mark Holton http://markholton.com
+// MIT license
+// initial release 12/15/2010
+// https://github.com/holtonma/infini_scroll (soon to be public repo)
+// version 0.1
+// dependencies: jQuery (I wrote it with 1.4, but it likely works with earlier versions, 
+// will check into that later)
+// if you re-use, ask that you keep this in the header 
+
+
 infiniScroll -- infinite scrolling for ALL!
 
 but first... DEMO time!
