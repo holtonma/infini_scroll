@@ -29,32 +29,30 @@
       return methods.pollScroll();
     } else {//this.infiniScroll('pollScroll');
       if (settings.freshest_id > settings.lowest_id){
-    		$('#'+settings.loading_elem).show();
-	      $.ajax({
-	        type: "GET",
-	        url: settings.root_url+"?id="+settings.freshest_id+"&n="+settings.num,
-	        dataType: 'html',
-	        timeout: 3000,
-	        error: function() { /* maybe display error message */ },
-	        success: function(data) {
-		        $('#'+settings.data_elem).append(data);
-	          $('#'+settings.loading_elem).hide();
-	          settings.freshest_id = parseInt( $('div.post').last()[0].id.split("_")[1] );
-	          methods.pollScroll()
-	        }
-	      });
-	    }  // do not make ajax request if it's the only one left
-      
-    }
-    
+        $('#'+settings.loading_elem).show();
+        $.ajax({
+          type: "GET",
+          url: settings.root_url+"?id="+settings.freshest_id+"&n="+settings.num,
+          dataType: 'html',
+          timeout: 3000,
+    			error: function() { /* maybe display error message */ },
+          success: function(data) {
+            $('#'+settings.data_elem).append(data);
+              $('#'+settings.loading_elem).hide();
+              settings.freshest_id = parseInt( $('div.post').last()[0].id.split("_")[1] );
+              methods.pollScroll()
+            } 
+          });
+        }  // do not make ajax request if it's the only one left
+      } // check if it's low enough 
   };
   
   var _setLastID = function(elem, lastID){
-	  elem.data("lastID", lastID);
+    elem.data("lastID", lastID);
   };
 
   var _lowEnough = function(){
-	  // is it low enough to scroll?
+    // is it low enough to scroll?
     var pageHeight = Math.max(document.body.scrollHeight ||
       document.body.offsetHeight);
     var viewportHeight = window.innerHeight  ||
@@ -72,13 +70,13 @@
     init : function( options ) { 
       $('#'+settings.loading_elem).hide();
     },
-    
+
     pollScroll : function() { 
       // checking every so often:  
       setTimeout(_checkScroll, 100);
     }   
   };
-    
+  
   var settings = {
      'interval'     : 100
     ,'root_url'     : '/grab_next'
@@ -89,7 +87,7 @@
     ,'lowest_id'    : 1
     ,'sort'         : 'desc'
   };
-  
+
   $.fn.infiniScroll = function(method) {
     // Method calling logic
     if ( methods[method] ) {
@@ -100,5 +98,5 @@
       $.error( 'Method ' +  method + ' does not exist on jQuery.infiniScroll' );
     }  
   }
-  
-  })( jQuery );
+
+})( jQuery );
