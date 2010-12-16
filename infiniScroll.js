@@ -1,9 +1,31 @@
+// code written by Mark Holton
+// MIT license
+// initial release 12/15/2010
+// https://github.com/holtonma/infini_scroll (soon to be public repo)
+// version 0.1
+// requires jQuery (I wrote it with 1.4, but it likely works with earlier versions, 
+// will check into that later)
+// if you re-use, keep this in the header
+// http://markholton.com
+
+// USAGE: 
+/*
+  $('#posts').infiniScroll();   // initialize
+  $('#posts').infiniScroll({ // calls the init method overrides defaults
+    'interval' : 200
+    ,'root_url' : '/my_posts'
+    ,'loading_elem': 'loading'
+    ,'data_elem': 'leaderboard'
+    ,'num' : 12
+  });
+*/
+
+
 (function( $ ){
   
   var _checkScroll = function( ) { 
     // if it's low enough, grab latest data
     if (!_lowEnough()){
-      //return methods.pollScroll();
       return methods.pollScroll();
     } else {//this.infiniScroll('pollScroll');
       if (settings.freshest_id > settings.lowest_id){
@@ -15,24 +37,20 @@
 	        timeout: 3000,
 	        error: function() { /* maybe display error message */ },
 	        success: function(data) {
-		        //console.log("settings.data_elem: ", settings.data_elem);
-	          $('#'+settings.data_elem).append(data);
-	          //settings.data_elem.append(data);
+		        $('#'+settings.data_elem).append(data);
 	          $('#'+settings.loading_elem).hide();
 	          settings.freshest_id = parseInt( $('div.post').last()[0].id.split("_")[1] );
-	          //console.log("settings.freshest_id: ", settings.freshest_id);
-						methods.pollScroll()
+	          methods.pollScroll()
 	        }
 	      });
 	    }  // do not make ajax request if it's the only one left
       
     }
-    //this.data("lastID", 86); //$('#posts').data
+    
   };
   
   var _setLastID = function(elem, lastID){
 	  elem.data("lastID", lastID);
-	  //console.log(elem.data("lastID"));
   };
 
   var _lowEnough = function(){
@@ -52,7 +70,6 @@
   /* PUBLIC METHODS */
   var methods = {
     init : function( options ) { 
-      //this.data("lastID", 10000000); //$('#posts').data
       $('#'+settings.loading_elem).hide();
     },
     
@@ -83,12 +100,5 @@
       $.error( 'Method ' +  method + ' does not exist on jQuery.infiniScroll' );
     }  
   }
-  /*
-    $('div').infiniScroll();   // calls the init method
-    $('#posts').infiniScroll({ // calls the init method
-      interval : 200,
-      url : '/my_posts.json'
-    });
-    $('div').infiniScroll('hide'); // calls the hide method
-  */
-})( jQuery );
+  
+  })( jQuery );
