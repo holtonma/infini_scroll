@@ -20,7 +20,6 @@
   });
 */
 
-
 (function( $ ){
   
   var _checkScroll = function( ) { 
@@ -35,7 +34,6 @@
           url: settings.root_url+"?id="+settings.freshest_id+"&n="+settings.num,
           dataType: 'html',
           timeout: 3000,
-    			error: function() { /* maybe display error message */ },
           success: function(data) {
             $('#'+settings.data_elem).append(data);
               $('#'+settings.loading_elem).hide();
