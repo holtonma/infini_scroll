@@ -27,7 +27,7 @@ Basically, anyone that wants the same functionality for infinite scrolling ... c
 
 Who wants to keep writing the same code?  Nobody.  Well certainly not most people.  So wanted to abstract this so it can be re-used it in a lot of places.  Now instead of re-writing 104 lines of code, you can write 1 line:  
 
-$('#posts').infiniScroll('pollScroll');
+$('#posts').infiniScroll('pollLevel');
 
 
 It has default settings, but those can be overridden as such (it will override what is set, and keep defaults for the rest):
