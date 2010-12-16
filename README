@@ -52,3 +52,9 @@ $('#posts').infiniScroll({ // calls the init method
 
 More details later, hope you like infiniScroll!
 Mark
+
+KNOWN ITEMS to ADDRESS:
+* only counts in DESC order with ID's (assumes starting at highest ID down to lowest -- need param for ASC/DESC)
+* URL convention for XHR get needs to be better explained
+* publish my tests
+
