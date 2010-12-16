@@ -22,11 +22,11 @@
 
 (function( $ ){
   
-  var _checkScroll = function( ) { 
+  var _checkLevel = function( ) { 
     // if it's low enough, grab latest data
-    if (!_lowEnough()){
-      return methods.pollScroll();
-    } else {//this.infiniScroll('pollScroll');
+    if (!_levelReached()){
+      return methods.pollLevel();
+    } else {
       if (settings.freshest_id > settings.lowest_id){
         $('#'+settings.loading_elem).show();
         $.ajax({
@@ -38,7 +38,7 @@
             $('#'+settings.data_elem).append(data);
               $('#'+settings.loading_elem).hide();
               settings.freshest_id = parseInt( $('div.post').last()[0].id.split("_")[1] );
-              methods.pollScroll()
+              methods.pollLevel()
             } 
           });
         }  // do not make ajax request if it's the only one left
@@ -49,8 +49,8 @@
     elem.data("lastID", lastID);
   };
 
-  var _lowEnough = function(){
-    // is it low enough to scroll?
+  var _levelReached = function(){
+    // is it low enough to add elements to bottom?
     var pageHeight = Math.max(document.body.scrollHeight ||
       document.body.offsetHeight);
     var viewportHeight = window.innerHeight  ||
@@ -69,9 +69,9 @@
       $('#'+settings.loading_elem).hide();
     },
 
-    pollScroll : function() { 
+    pollLevel : function() { 
       // checking every so often:  
-      setTimeout(_checkScroll, 100);
+      setTimeout(_checkLevel, 100);
     }   
   };
   
